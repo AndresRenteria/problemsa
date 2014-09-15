@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
 
-    <title>Speed test </title>
+    <title>Eject </title>
 
     
 
@@ -27,6 +27,7 @@
 
 </head>
 <body>
+
 <?php 
             $mortal=False;
              if (getenv('HTTP_X_FORWARDED_FOR')) {
@@ -58,7 +59,6 @@
 
             ?>
 
-
 <div id="layout">
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
@@ -72,7 +72,7 @@
 
             <ul>
              <li > <a href="index.php">HOME</a></li>
-                <li class="menu-item-divided pure-menu-selected"><a href="#">Speed Test</a></li>
+                <li ><a href="speedtest.php">Speed Test</a></li>
                 <li><a href="#">Comandos cisco</a></li>
 
                 <li >
@@ -80,48 +80,45 @@
                 </li>
                 <?php 
                 if(!$mortal){
-                    echo '<li><a href="eject.php">Sacar charola CD</a></li>';
+                echo '<li class="menu-item-divided pure-menu-selected"><a href="#">Sacar charola CD</a></li>';
                 }
                 ?>
             </ul>
         </div>
     </div>
 
-    <div id="main">
+
+    <?php 
+    if(!$mortal){
+        if (isset($_POST['eject']))
+        {
+             $result = shell_exec('sudo /var/www/html/bin/morning.sh');
+        }
+    echo '<div id="main">
         <div class="header">
-            <h1>Speed TEST</h1>
+            <h1>Sacar Charola</h1>
         </div>
-
-        <div class="content">
-            <h2 class="content-subhead">SpeedTest</h2>
-            <script src="js/speedtest.js"></script>
-            <button onclick="showResults()">Empezar el TEST</button>
-            <input type="button" value="Reinicar Parámetros" onClick="window.location.reload()">
-            
-          <div class="content">
-            
-            
-            
             <div class="pure-g">
-                <div class="pure-u-1-3"><p>Bits por segundo</p></div>
-                <div class="pure-u-1-3"><p>Kilobits por segunto</p></div>
-                <div class="pure-u-1-3"><p>Megabits por segundo</p></div>
-            </div>
-            <div class="pure-g">
-                <div class="pure-u-1-3"><p id="speedBps"></p></div>
-                <div class="pure-u-1-3"><p id="speedKbps"></p></div>
-                <div class="pure-u-1-3"><p id="speedMbps"></p></div>
-            </div>
+                <div class="pure-u-1-2"><img style ="margin-left: 10%; margin-top:30%" src="video/flecha.jpg"></div>
+                <div class="pure-u-1-2">
 
-            <h2> Parámetros de su conexión</h2>
-            <p id = "parametros"></p>
-           
-          </div>
+                <form method="post">
+                <button name= "eject"class="pure-button pure-button-primary" style="margin-top:32%; margin-left:10%">Eject cd Tray!!!!</button>
+                <p>'.$result.'</p>
+                </form>
+                </div>
+               
+            </div>
             
 
             
         </div>
-    </div>
+    </div>';
+
+    }else{
+        echo '<div id="main"><img style="margin-left:15%; margin-top:10%"src="video/nopw.jpg"></div>';
+    }
+    ?>
 </div>
 
 

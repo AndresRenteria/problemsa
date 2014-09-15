@@ -18,7 +18,36 @@
 
 </head>
 <body>
+<?php 
+            $mortal=False;
+             if (getenv('HTTP_X_FORWARDED_FOR')) {
+                    $pipaddress = getenv('HTTP_X_FORWARDED_FOR');
+                    $ipaddress = getenv('REMOTE_ADDR');
+                echo "Your Proxy IP address is : ".$pipaddress. "(via $ipaddress)" ;
+                echo ip2long($pipaddress);
+              } else {
+                    $ipaddress = getenv('REMOTE_ADDR');
+                    
+                    if($ipaddress == "10.0.0.2" || $ipaddress == "10.64.0.2" || $ipaddress == "10.128.0.2" || $ipaddress == "10.43.19.91"){
+                      //10.0.0.2 gda
+                      //10.64.0.2 mty
+                      //10.128.0.2 cem
+                      //debug only
+                      //echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
+                      //echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
+                      $mortal = False;
+                    
+                    }else{
+                      //simples mortales
+                      $mortal = True;
+                      //echo "<h1>Bienvenido </h1>";
+                      //echo "<h2> simple mortal, tu dirección ip es : $ipaddress </h2>";
+                    }
+                    //print " ";
+                    //echo "<p> ".ip2long($ipaddress). "</p>";
+                }
 
+            ?>
 
 
 <div id="layout">
@@ -36,14 +65,18 @@
                 <li class="menu-item-divided pure-menu-selected">
                     <a href="index.php">HOME</a>
                 </li>
-                <li><a href="speedtest.html">Speed Test</a></li>
+                <li><a href="speedtest.php">Speed Test</a></li>
                 <li><a href="#">Comandos cisco</a></li>
 
                 <li >
                     <a href="#">Diagrama de Red</a>
                 </li>
-
-                <li><a href="#">Sacar charola CD</a></li>
+                <?php 
+                if(!$mortal){
+                  echo '<li><a href="eject.php">Sacar charola CD</a></li>';
+                }
+                
+                ?>
             </ul>
         </div>
     </div>
@@ -52,49 +85,20 @@
         <div class="header">
             
             <?php 
-            $mortal=False;
-             if (getenv('HTTP_X_FORWARDED_FOR')) {
-                    $pipaddress = getenv('HTTP_X_FORWARDED_FOR');
-                    $ipaddress = getenv('REMOTE_ADDR');
-                echo "Your Proxy IP address is : ".$pipaddress. "(via $ipaddress)" ;
-                echo ip2long($pipaddress);
-              } else {
-                    $ipaddress = getenv('REMOTE_ADDR');
-                    
-                    if($ipaddress == "10.0.0.2"){
-                      //10.0.0.2 gda
-                      echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
-                      echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
-                    
-                    }else if($ipaddress == "10.64.0.2"){
-                      //10.64.0.2 mty
-                      echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
-                      echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
+              if(!$mortal){
+                    echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
+                    echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
+              }else{
+                echo "<h1>Bienvenido </h1>";
+                echo "<h2> simple mortal, tu dirección ip es : $ipaddress </h2>";
 
-                    }else if($ipaddress == "10.128.0.2"){
-                      //10.128.0.2 cem
-                      echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
-                      echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
-
-                    }else if($ipaddress == "10.43.19.91"){ //debug only
-                      echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
-                      echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
-                    }else{
-                      //simples mortales
-                      $mortal = True;
-                      echo "<h1>Bienvenido </h1>";
-                      echo "<h2> simple mortal, tu dirección ip es : $ipaddress </h2>";
-                    }
-                    //print " ";
-                    //echo "<p> ".ip2long($ipaddress). "</p>";
-                }
-
+              }
             ?>
             <!--<h2>simple mortal</h2>-->
         </div>
 
         <div class="content">
-            <h2 class="content-subhead">¿Como &%$# se usa esto?</h2>
+            <h2 class="content-subhead">¿Como se usa esto?</h2>
             <p>
                Esta es la página principal, en el menú derecho puedes encontrar los links para pasearte por la página, buen viaje!
             </p>
