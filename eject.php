@@ -1,4 +1,4 @@
-<!doctype html>
+4<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -92,7 +92,7 @@
     if(!$mortal){
         if (isset($_POST['eject']))
         {
-             $result = shell_exec('sudo /var/www/html/bin/morning.sh');
+             $result = shell_exec('sudo /var/www/bin/morning.sh');
         }
     echo '<div id="main">
         <div class="header">

@@ -82,17 +82,21 @@
                     <a href="index.php">HOME</a>
                 </li>
                 <li><a href="speedtest.php">Speed Test</a></li>
-                <li><a href="#">Comandos cisco</a></li>
+                <li><a href="comandos.php">Comandos cisco</a></li>
 
-                <li >
-                    <a href="#">Diagrama de Red</a>
-                </li>
                 <?php 
                 if(!$mortal){
-                  echo '<li><a href="eject.php">Sacar charola CD</a></li>';
+                    echo '<li><a href="eject.php">Sacar charola CD</a></li>';
                 }
-                
                 ?>
+
+                <li >
+                    <a href="diagrama.php">Diagrama de Red</a>
+                </li>
+
+                 <li><a href="preguntas.php">Preguntas</a></li>
+
+
             </ul>
         </div>
     </div>
@@ -103,13 +107,14 @@
             <?php 
 
               if(!$mortal){
-                    echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
+                    echo "<h1>Bienvenido a Estado de Mexico Capitan, todos abordo!!!</h1>";
                     echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
                      echo "<h2> Se conecta desde: $procedencia </h2>";
               }else{
-                echo "<h1>Bienvenido </h1>";
+                echo "<h1>Bienvenido a Estado de Mexico</h1>";
                 echo "<h2> simple mortal, tu dirección ip es : $ipaddress </h2>";
                 echo "<h2> Se conecta desde: $procedencia </h2>";
+
 
               }
            

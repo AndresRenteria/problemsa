@@ -73,16 +73,21 @@
             <ul>
              <li > <a href="index.php">HOME</a></li>
                 <li class="menu-item-divided pure-menu-selected"><a href="#">Speed Test</a></li>
-                <li><a href="#">Comandos cisco</a></li>
-
-                <li >
-                    <a href="#">Diagrama de Red</a>
-                </li>
+               
                 <?php 
                 if(!$mortal){
                     echo '<li><a href="eject.php">Sacar charola CD</a></li>';
                 }
                 ?>
+                 
+                 
+                <li>
+                    <a href="diagrama.php">Diagrama de Red</a>
+                </li>
+
+                 <li ><a href="preguntas.php">Preguntas</a></li>
+              
+              <li><a href="comandos.php">Comandos cisco</a></li>
             </ul>
         </div>
     </div>
