@@ -19,6 +19,13 @@
 </head>
 <body>
 <?php 
+            $gda = ip2long("10.0.0.0");
+            $mty = ip2long("10.64.0.0");
+            $df = ip2long("10.128.0.0");
+            $prob = ip2long("10.192.0.0");
+            $procedencia = "";
+             $numip = "";
+
             $mortal=False;
              if (getenv('HTTP_X_FORWARDED_FOR')) {
                     $pipaddress = getenv('HTTP_X_FORWARDED_FOR');
@@ -27,7 +34,16 @@
                 echo ip2long($pipaddress);
               } else {
                     $ipaddress = getenv('REMOTE_ADDR');
-                    
+                    $numip = ip2long($ipaddress);
+                    if($numip>=$gda && $numip < $mty){
+                      $procedencia = "Guadalajara";
+                    }else if($numip>=$mty && $numip < $df){
+                      $procedencia = "Monterrey";
+                    }else if($numip>=$df && $numip < $prob){
+                      $procedencia = "Estado de México";
+                    }else{
+                      $procedencia = "Algún lado extraño";
+                    }
                     if($ipaddress == "10.0.0.2" || $ipaddress == "10.64.0.2" || $ipaddress == "10.128.0.2" || $ipaddress == "10.43.19.91"){
                       //10.0.0.2 gda
                       //10.64.0.2 mty
@@ -85,14 +101,19 @@
         <div class="header">
             
             <?php 
+
               if(!$mortal){
                     echo "<h1>Bienvenido Capitan, todos abordo!!!</h1>";
                     echo "<h2> capitan!, su dirección ip es : $ipaddress </h2>";
+                     echo "<h2> Se conecta desde: $procedencia </h2>";
               }else{
                 echo "<h1>Bienvenido </h1>";
                 echo "<h2> simple mortal, tu dirección ip es : $ipaddress </h2>";
+                echo "<h2> Se conecta desde: $procedencia </h2>";
 
               }
+           
+         
             ?>
             <!--<h2>simple mortal</h2>-->
         </div>
